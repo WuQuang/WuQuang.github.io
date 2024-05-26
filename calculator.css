@@ -58,12 +58,12 @@ footer {
     padding: 20px;
     border-radius: 5px;
     margin-top: 20px;
-    text-align: center;
+    text-align: left;
 }
-.calculator-box input[type="number"], .calculator-box select {
-    width: calc(50% - 22px);
+.calculator-box label, .calculator-box input {
+    width: 100%;
     padding: 10px;
-    margin: 10px 5px;
+    margin-bottom: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
 }
@@ -79,4 +79,8 @@ footer {
 }
 .calculator-box input[type="submit"]:hover {
     background-color: #0056b3;
+}
+#result {
+    margin-top: 20px;
+    font-size: 18px;
 }
