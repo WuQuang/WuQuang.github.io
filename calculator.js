@@ -19,8 +19,14 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
+        const comp = waist - neck; // Calculation of waist minus neck
+
         // Here you can add the logic to check height and weight standards
-        // For now, we will just display the entered values
-        resultDiv.innerHTML = `<p>Height: ${height} inches</p><p>Weight: ${weight} pounds</p><p>Neck Circumference: ${neck} cm</p><p>Waist Circumference: ${waist} cm</p>`;
+        // For now, we will just display the entered values along with comp
+        resultDiv.innerHTML = `<p>Height: ${height} inches</p>
+                               <p>Weight: ${weight} pounds</p>
+                               <p>Neck Circumference: ${neck} cm</p>
+                               <p>Waist Circumference: ${waist} cm</p>
+                               <p>Comp (Waist - Neck): ${comp} cm</p>`; // Display comp
     });
 });
