@@ -96,32 +96,32 @@ document.addEventListener('DOMContentLoaded', function() {
         return value >= min && value <= max;
     }
 
-    function lookupStandardsMale(measurements) {
-        const { comp, height } = measurements;
-        const ranges maleRanges;
+function lookupStandardsMale(measurements) {
+    const { comp, height } = measurements;
+    const ranges = maleRanges;
 
-        for (const range of ranges) {
-            if (isWithinRange(comp, range.compMin, range.compMax) &&
-                isWithinRange(height, range.heightMin, range.heightMax)) {
-                return "Yes";
-                break;
-            }
-        return "No";
+    for (const range of ranges) {
+        if (isWithinRange(comp, range.compMin, range.compMax) &&
+            isWithinRange(height, range.heightMin, range.heightMax)) {
+            return "Yes";
         }
-    function lookupStandardsFemale(measurements) {
-        const { comp, height } = measurements;
-        const ranges femaleRanges;
-
-        for (const range of ranges) {
-            if (isWithinRange(comp, range.compMin, range.compMax) &&
-                isWithinRange(height, range.heightMin, range.heightMax)) {
-                return "Yes:;
-                break;
-            }
-        return "No";
-        }
-
     }
+    return "No";
+}
+
+function lookupStandardsFemale(measurements) {
+    const { comp, height } = measurements;
+    const ranges = femaleRanges;
+
+    for (const range of ranges) {
+        if (isWithinRange(comp, range.compMin, range.compMax) &&
+            isWithinRange(height, range.heightMin, range.heightMax)) {
+            return "Yes";
+        }
+    }
+    return "No";
+}
+
 
 submitButton.addEventListener('click', function(event) {
     event.preventDefault();
