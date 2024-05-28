@@ -96,10 +96,22 @@ document.addEventListener('DOMContentLoaded', function() {
         return value >= min && value <= max;
     }
 
-    function lookupStandards(measurements, gender) {
+    function lookupStandardsMale(measurements) {
         const { comp, height } = measurements;
         let resultMessage = 'No';
-        const ranges = gender === 'male' ? maleRanges : femaleRanges;
+        const ranges = maleRanges;
+
+        for (const range of ranges) {
+            if (isWithinRange(comp, range.compMin, range.compMax) &&
+                isWithinRange(height, range.heightMin, range.heightMax)) {
+                resultMessage = 'Yes';
+                break;
+            }
+        }
+    function lookupStandardsFemale(measurements) {
+        const { comp, height } = measurements;
+        let resultMessage = 'No';
+        const ranges femaleRanges;
 
         for (const range of ranges) {
             if (isWithinRange(comp, range.compMin, range.compMax) &&
@@ -138,8 +150,9 @@ submitButton.addEventListener('click', function(event) {
     }
 
     const measurements = calculateMeasurements(height, weight, neck, waist);
-    const results = lookupStandards(measurements, gender);
-    displayResults(results, gender);
+    const resFemale = lookupStandardsMale(measurements);
+    const resMale = lookupStandardsFemale(measurements);
+    resuleMaleDiv.inn
 });
 
 });
