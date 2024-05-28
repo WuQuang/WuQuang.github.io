@@ -4,72 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AFROTC Height and Weight Checker</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #add8e6;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            width: 80%;
-            margin: auto;
-            overflow: hidden;
-        }
-        .showcase {
-            min-height: 400px;
-            background: url('showcase.jpg') no-repeat center center;
-            background-size: cover;
-            text-align: center;
-            color: #fff;
-        }
-        .showcase h1 {
-            margin-top: 100px;
-            font-size: 55px;
-            margin-bottom: 10px;
-        }
-        .showcase p {
-            font-size: 20px;
-        }
-        form {
-            background: #fff;
-            padding: 20px;
-            margin-top: 30px;
-        }
-        form label, form input {
-            display: block;
-            margin-bottom: 10px;
-        }
-        form select {
-            display: block;
-            margin-bottom: 10px;
-        }
-        form input[type="submit"] {
-            display: inline-block;
-            border: none;
-            background: #333;
-            color: #fff;
-            padding: 10px 20px;
-            cursor: pointer;
-        }
-        .content {
-            padding: 20px;
-            background: #fff;
-            margin-top: 30px;
-        }
-        footer {
-            text-align: center;
-            padding: 30px 0;
-            background: #333;
-            color: #fff;
-        }
-        .result-area {
-            padding: 10px;
-            background-color: #f9f9f9;
-            border: 1px solid #ccc;
-            margin-top: 20px;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
@@ -89,6 +24,12 @@
         <div class="content" id="calculator">
             <h2>Height and Weight Calculator</h2>
             <div class="calculator-box">
+                <label for="gender">Gender:</label>
+                <select id="gender" name="gender">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+                
                 <label for="height">Height (in inches):</label>
                 <input type="number" id="height" name="height">
                 
@@ -101,137 +42,12 @@
                 <input type="submit" value="Check">
             </div>
             <h2>Results</h2>
-            <p>Fit within Male Standards?</p> <p id="male"></p>
-            <p>Fit within Female Standards?</p> <p id="female"></p>
+            <p>Fit within Standards?<p> <p id="result"></p>
         </div>
     </div>
     <footer>
         <p>AFROTC Height and Weight Checker &copy; 2024</p>
     </footer>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const heightInput = document.getElementById('height');
-            const neckInput = document.getElementById('neck');
-            const waistInput = document.getElementById('waist');
-            const submitButton = document.querySelector('.calculator-box input[type="submit"]');
-            const resultDivMale = document.getElementById('male');
-            const resultDivFemale = document.getElementById('female');
-
-            const maleRanges = [
-                { compMin: 11, compMax: 18, heightMin: 60, heightMax: 64.5 },
-                { compMin: 18.25, compMax: 18.25, heightMin: 60.5, heightMax: 64.5 },
-                { compMin: 18.5, compMax: 18.5, heightMin: 61.5, heightMax: 64.5 },
-                { compMin: 18.75, compMax: 18.75, heightMin: 62.5, heightMax: 64.5 },
-                { compMin: 19.00, compMax: 19.00, heightMin: 63.5, heightMax: 64.5 },
-                { compMin: 19.25, compMax: 19.25, heightMin: 64.5, heightMax: 64.5 },
-                { compMin: 11, compMax: 19.25, heightMin: 65, heightMax: 69.5 },
-                { compMin: 19.5, compMax: 19.5, heightMin: 65.5, heightMax: 69.5 },
-                { compMin: 19.75, compMax: 19.75, heightMin: 66.5, heightMax: 69.5 },
-                { compMin: 20, compMax: 20, heightMin: 67.5, heightMax: 69.5 },
-                { compMin: 20.25, compMax: 20.25, heightMin: 68.5, heightMax: 69.5 },
-                { compMin: 20.5, compMax: 20.5, heightMin: 69.5, heightMax: 69.5 },
-                { compMin: 11, compMax: 20.5, heightMin: 70, heightMax: 74.5 },
-                { compMin: 20.75, compMax: 20.75, heightMin: 70.5, heightMax: 74.5 },
-                { compMin: 21, compMax: 21, heightMin: 71.5, heightMax: 74.5 },
-                { compMin: 21.25, compMax: 21.25, heightMin: 73, heightMax: 74.5 },
-                { compMin: 21.5, compMax: 21.5, heightMin: 74, heightMax: 74.5 },
-                { compMin: 11, compMax: 21.75, heightMin: 75, heightMax: 79.5 },
-                { compMin: 22, compMax: 22, heightMin: 76, heightMax: 79.5 },
-                { compMin: 22.25, compMax: 22.25, heightMin: 77, heightMax: 79.5 },
-                { compMin: 22.5, compMax: 22.5, heightMin: 78, heightMax: 79.5 },
-                { compMin: 22.75, compMax: 22.75, heightMin: 79, heightMax: 79.5 }
-            ];
-
-            const femaleRanges = [
-                { compMin: 34.5, compMax: 51.25, heightMin: 58, heightMax: 62.5 },
-                { compMin: 51.5, compMax: 51.5, heightMin: 58.5, heightMax: 62.5 },
-                { compMin: 51.75, compMax: 51.75, heightMin: 59, heightMax: 62.5 },
-                { compMin: 52, compMax: 52, heightMin: 59.5, heightMax: 62.5 },
-                { compMin: 52.25, compMax: 52.25, heightMin: 60, heightMax: 62.5 },
-                { compMin: 52.5, compMax: 52.5, heightMin: 60.5, heightMax: 62.5 },
-                { compMin: 52.75, compMax: 52.75, heightMin: 61, heightMax: 62.5 },
-                { compMin: 53, compMax: 53, heightMin: 61.5, heightMax: 62.5 },
-                { compMin: 53.25, compMax: 53.25, heightMin: 62, heightMax: 62.5 },
-                { compMin: 53.5, compMax: 53.5, heightMin: 62, heightMax: 62.5 },
-                { compMin: 53.75, compMax: 53.75, heightMin: 62.5, heightMax: 62.5 },
-                { compMin: 34.5, compMax: 53.75, heightMin: 63, heightMax: 67.5 },
-                { compMin: 54, compMax: 54, heightMin: 63.5, heightMax: 67.5 },
-                { compMin: 54.25, compMax: 54.25, heightMin: 64, heightMax: 67.5 },
-                { compMin: 54.5, compMax: 54.5, heightMin: 64.5, heightMax: 67.5 },
-                { compMin: 54.75, compMax: 54.75, heightMin: 65, heightMax: 67.5 },
-                { compMin: 55, compMax: 55, heightMin: 65.5, heightMax: 67.5 },
-                { compMin: 55.25, compMax: 55.25, heightMin: 66, heightMax: 67.5 },
-                { compMin: 55.5, compMax: 55.5, heightMin: 66.5, heightMax: 67.5 },
-                { compMin: 55.75, compMax: 55.75, heightMin: 67, heightMax: 67.5 },
-                { compMin: 56, compMax: 56, heightMin: 67.5, heightMax: 67.5 },
-                { compMin: 34.5, compMax: 56.25, heightMin: 68, heightMax: 72.5 },
-                { compMin: 56.5, compMax: 56.5, heightMin: 68.5, heightMax: 72.5 },
-                { compMin: 56.75, compMax: 56.75, heightMin: 69, heightMax: 72.5 },
-                { compMin: 57, compMax: 57, heightMin: 69.5, heightMax: 72.5 },
-                { compMin: 57.25, compMax: 57.25, heightMin: 70, heightMax: 72.5 },
-                { compMin: 57.5, compMax: 57.5, heightMin: 70.5, heightMax: 72.5 },
-                { compMin: 57.75, compMax: 57.75, heightMin: 71, heightMax: 72.5 },
-                { compMin: 58, compMax: 58, heightMin: 71.5, heightMax: 72.5 },
-                { compMin: 58.25, compMax: 58.25, heightMin: 72, heightMax: 72.5 },
-                { compMin: 58.5, compMax: 58.5, heightMin: 72.5, heightMax: 72.5 },
-                { compMin: 34.5, compMax: 58.75, heightMin: 73, heightMax: 77.5 },
-                { compMin: 59, compMax: 59, heightMin: 73.5, heightMax: 77.5 },
-                { compMin: 59.25, compMax: 59.25, heightMin: 74, heightMax: 77.5 },
-                { compMin: 59.5, compMax: 59.5, heightMin: 74.5, heightMax: 77.5 },
-                { compMin: 59.75, compMax: 59.75, heightMin: 75, heightMax: 77.5 },
-                { compMin: 60, compMax: 60, heightMin: 75.5, heightMax: 77.5 },
-                { compMin: 60.25, compMax: 60.25, heightMin: 76, heightMax: 77.5 },
-                { compMin: 60.5, compMax: 60.5, heightMin: 76.5, heightMax: 77.5 },
-                { compMin: 60.75, compMax: 60.75, heightMin: 77, heightMax: 77.5 },
-                { compMin: 61, compMax: 61, heightMin: 77.5, heightMax: 77.5 },
-                { compMin: 34.5, compMax: 61.25, heightMin: 78, heightMax: 82.5 },
-                { compMin: 61.5, compMax: 61.5, heightMin: 78.5, heightMax: 82.5 },
-                { compMin: 61.75, compMax: 61.75, heightMin: 79, heightMax: 82.5 },
-                { compMin: 62, compMax: 62, heightMin: 79.5, heightMax: 82.5 },
-                { compMin: 62.25, compMax: 62.25, heightMin: 80, heightMax: 82.5 },
-                { compMin: 62.5, compMax: 62.5, heightMin: 80.5, heightMax: 82.5 },
-                { compMin: 62.75, compMax: 62.75, heightMin: 81, heightMax: 82.5 },
-                { compMin: 63, compMax: 63, heightMin: 81.5, heightMax: 82.5 },
-                { compMin: 63.25, compMax: 63.25, heightMin: 82, heightMax: 82.5 },
-                { compMin: 63.5, compMax: 63.5, heightMin: 82.5, heightMax: 82.5 }
-            ];
-
-            submitButton.addEventListener('click', function(event) {
-                event.preventDefault();
-
-                const height = parseFloat(heightInput.value);
-                const neck = parseFloat(neckInput.value);
-                const waist = parseFloat(waistInput.value);
-
-                if (isNaN(height) || isNaN(neck) || isNaN(waist)) {
-                    alert('Please enter valid numbers for height, neck, and waist.');
-                    return;
-                }
-
-                const maleComp = ((waist - neck) / height) * 100;
-                const femaleComp = ((waist - neck) / height) * 100;
-
-                let isMaleFit = false;
-                let isFemaleFit = false;
-
-                for (const range of maleRanges) {
-                    if (height >= range.heightMin && height <= range.heightMax && maleComp >= range.compMin && maleComp <= range.compMax) {
-                        isMaleFit = true;
-                        break;
-                    }
-                }
-
-                for (const range of femaleRanges) {
-                    if (height >= range.heightMin && height <= range.heightMax && femaleComp >= range.compMin && femaleComp <= range.compMax) {
-                        isFemaleFit = true;
-                        break;
-                    }
-                }
-
-                resultDivMale.textContent = isMaleFit ? 'Yes' : 'No';
-                resultDivFemale.textContent = isFemaleFit ? 'Yes' : 'No';
-            });
-        });
-    </script>
+    <script src="calculator.js"></script>
 </body>
 </html>
