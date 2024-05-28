@@ -7,8 +7,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const resultDiv = document.getElementById('result');
 
     const ranges = [
-        { compMin: 11, compMax: 20, heightMin: 10, heightMax: 20 },
-        { compMin: 21, compMax: 30, heightMin: 21, heightMax: 30 },
+        { compMin: 11, compMax: 18, heightMin: 60, heightMax: 64.5 },
+        { compMin: 18.25, compMax: 18.25, heightMin: 60.5, heightMax: 64.5 },
+        { compMin: 18.5, compMax: 18.5, heightMin: 61.5, heightMax: 64.5 },
+        { compMin: 18.75, compMax: 18.75, heightMin: 62.5, heightMax: 64.5 },
+        { compMin: 19.00, compMax: 19.00, heightMin: 60.5, heightMax: 64.5 },
+        { compMin: 18.25, compMax: 18.25, heightMin: 60.5, heightMax: 64.5 },
         // Add more ranges as needed
     ];
 
@@ -38,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <p>Neck Circumference: ${measurements.neck} cm</p>
                 <p>Waist Circumference: ${measurements.waist} cm</p>
                 <p>Comp (Waist - Neck): ${comp} cm</p>
-                <p>Result: <strong>${resultMessage}</strong></p>`;
+                <p id="within-standards">Within Standards: <strong>${resultMessage}</strong></p>`;
     }
 
     submitButton.addEventListener('click', function(event) {
