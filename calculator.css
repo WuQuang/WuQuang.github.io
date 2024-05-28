@@ -4,11 +4,13 @@ body {
     margin: 0;
     padding: 0;
 }
+
 .container {
     width: 80%;
     margin: auto;
     overflow: hidden;
 }
+
 .showcase {
     min-height: 400px;
     background: url('showcase.jpg') no-repeat center center;
@@ -16,23 +18,33 @@ body {
     text-align: center;
     color: #fff;
 }
+
 .showcase h1 {
     margin-top: 100px;
     font-size: 55px;
     margin-bottom: 10px;
 }
+
 .showcase p {
     font-size: 20px;
 }
+
 form {
     background: #fff;
     padding: 20px;
     margin-top: 30px;
 }
+
 form label, form input {
     display: block;
     margin-bottom: 10px;
 }
+
+form select {
+    display: block;
+    margin-bottom: 10px;
+}
+
 form input[type="submit"] {
     display: inline-block;
     border: none;
@@ -41,53 +53,23 @@ form input[type="submit"] {
     padding: 10px 20px;
     cursor: pointer;
 }
+
 .content {
     padding: 20px;
     background: #fff;
     margin-top: 30px;
 }
+
 footer {
     text-align: center;
     padding: 30px 0;
     background: #333;
     color: #fff;
 }
-.calculator-box {
-    background: #f9f9f9;
-    border: 1px solid #ddd;
-    padding: 20px;
-    border-radius: 5px;
-    margin-top: 20px;
-    text-align: left;
-}
-.calculator-box label, .calculator-box input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-.calculator-box input[type="submit"] {
-    width: calc(100% - 22px);
-    padding: 10px;
-    margin-top: 20px;
-    background-color: #007bff;
-    border: none;
-    color: #fff;
-    cursor: pointer;
-    border-radius: 5px;
-}
-.calculator-box input[type="submit"]:hover {
-    background-color: #0056b3;
-}
-#result {
-    margin-top: 20px;
-    font-size: 18px;
-}
 
-/* Additional CSS for Within Standards result */
-#within-standards {
-    margin-top: 10px;
-    font-size: 18px;
-    color: #333;
+.result-area {
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    margin-top: 20px;
 }
