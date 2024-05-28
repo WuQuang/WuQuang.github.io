@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        const comp = ((waist - neck) / height) * 100;
+        const comp = (waist - neck);
         let isFit = false;
         const ranges = gender === 'male' ? maleRanges : femaleRanges;
 
