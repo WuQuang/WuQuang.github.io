@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
     const heightInput = document.getElementById('height');
-    const weightInput = document.getElementById('weight');
     const neckInput = document.getElementById('neck');
     const waistInput = document.getElementById('waist');
     const genderSelect = document.getElementById('gender');
@@ -87,9 +86,9 @@ document.addEventListener('DOMContentLoaded', function() {
         { compMin: 61.5, compMax: 61.5, heightMin: 77.5, heightMax: 77.5 },
     ];
 
-    function calculateMeasurements(height, weight, neck, waist) {
+    function calculateMeasurements(height, neck, waist) {
         const comp = waist - neck;
-        return { height, weight, neck, waist, comp };
+        return { height, neck, waist, comp };
     }
 
     function isWithinRange(value, min, max) {
@@ -126,16 +125,15 @@ function lookupStandardsFemale(measurements) {
 submitButton.addEventListener('click', function(event) {
     event.preventDefault();
     const height = parseFloat(heightInput.value);
-    const weight = parseFloat(weightInput.value);
     const neck = parseFloat(neckInput.value);
     const waist = parseFloat(waistInput.value);
 
-    if (isNaN(height) || isNaN(weight) || isNaN(neck) || isNaN(waist)) {
+    if (isNaN(height) || isNaN(neck) || isNaN(waist)) {
         resultDiv.innerHTML = '<p style="color: red;">Please enter valid numbers for all fields.</p>';
         return;
     }
 
-    const measurements = calculateMeasurements(height, weight, neck, waist);
+    const measurements = calculateMeasurements(height, neck, waist);
     const resMale = lookupStandardsMale(measurements);
     const resFemale = lookupStandardsFemale(measurements);
 
