@@ -119,21 +119,27 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
     }
 
-    submitButton.addEventListener('click', function(event) {
-        event.preventDefault();
-        const height = parseFloat(heightInput.value);
-        const weight = parseFloat(weightInput.value);
-        const neck = parseFloat(neckInput.value);
-        const waist = parseFloat(waistInput.value);
-        const gender = genderSelect.value;
+function displayResults(results, gender) {
+    const resultDiv = document.getElementById(`result${gender.charAt(0).toUpperCase() + gender.slice(1)}`);
+    resultDiv.innerHTML = results;
+}
 
-        if (isNaN(height) || isNaN(weight) || isNaN(neck) || isNaN(waist)) {
-            resultDiv.innerHTML = '<p style="color: red;">Please enter valid numbers for all fields.</p>';
-            return;
-        }
+submitButton.addEventListener('click', function(event) {
+    event.preventDefault();
+    const height = parseFloat(heightInput.value);
+    const weight = parseFloat(weightInput.value);
+    const neck = parseFloat(neckInput.value);
+    const waist = parseFloat(waistInput.value);
+    const gender = genderSelect.value;
 
-        const measurements = calculateMeasurements(height, weight, neck, waist);
-        const results = lookupStandards(measurements, gender);
-        resultDiv.innerHTML = results;
-    });
+    if (isNaN(height) || isNaN(weight) || isNaN(neck) || isNaN(waist)) {
+        resultDiv.innerHTML = '<p style="color: red;">Please enter valid numbers for all fields.</p>';
+        return;
+    }
+
+    const measurements = calculateMeasurements(height, weight, neck, waist);
+    const results = lookupStandards(measurements, gender);
+    displayResults(results, gender);
+});
+
 });
