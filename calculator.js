@@ -7,13 +7,22 @@ document.addEventListener('DOMContentLoaded', function() {
     const resultDiv = document.getElementById('result');
 
     const ranges = [
+        // Table 1
         { compMin: 11, compMax: 18, heightMin: 60, heightMax: 64.5 },
         { compMin: 18.25, compMax: 18.25, heightMin: 60.5, heightMax: 64.5 },
         { compMin: 18.5, compMax: 18.5, heightMin: 61.5, heightMax: 64.5 },
         { compMin: 18.75, compMax: 18.75, heightMin: 62.5, heightMax: 64.5 },
-        { compMin: 19.00, compMax: 19.00, heightMin: 60.5, heightMax: 64.5 },
-        { compMin: 18.25, compMax: 18.25, heightMin: 60.5, heightMax: 64.5 },
-        // Add more ranges as needed
+        { compMin: 19.00, compMax: 19.00, heightMin: 63.5, heightMax: 64.5 },
+        { compMin: 19.25, compMax: 19.25, heightMin: 64.5, heightMax: 64.5 },
+        //Table2
+        { compMin: 11, compMax: 19.25, heightMin: 65, heightMax: 69.5 },
+        { compMin: 19.5, compMax: 19.5, heightMin: 65.5, heightMax: 69.5 },
+        { compMin: 19.75, compMax: 19.75, heightMin: 66.5, heightMax: 69.5 },
+        { compMin: 20, compMax: 20, heightMin: 67.5, heightMax: 69.5 },
+        { compMin: 20.25, compMax: 20.25, heightMin: 68.5, heightMax: 69.5 },
+        { compMin: 20.5, compMax: 20.5, heightMin: 69.5, heightMax: 69.5 },
+        // Table 3
+        
     ];
 
     function calculateMeasurements(height, weight, neck, waist) {
