@@ -6,70 +6,39 @@ document.addEventListener('DOMContentLoaded', function() {
     const submitButton = document.querySelector('.calculator-box input[type="submit"]');
     const resultDiv = document.getElementById('result');
 
-    const resultsLookup = {
-        //Male look up tables
-        "11_60": 3,  // Example entry
-        "11_60": 3,
-        "11_60": 3,
-        "11_60": 3,
-        "11_60": 3,
-        "11_60": 3,
-        "11_60": 3,
-        "11_60": 3,
-        "11_60": 3,
-        "11_60": 3,
-        "11_60": 3,
-        "11_60": 3,
-        "11_60": 3,
-        "11_60": 3,
-        "11_60": 3,
-        "11_60": 3,
-        "11_60": 3,
-        "11_60": 3,
-        "11_60": 3,
-        "11_60": 3,
-        "11_60": 3,
-        "11_60": 3,
-        "11_60": 3,
-        "11_60": 3,
-        "11_60": 3,
-        "11_60": 3,
-        "11_60": 3,
-        "11_60": 3,
-        "11_60": 3,
-        "11_60": 3,
-        "11_60": 3,
-        "11_60": 3,
-        "11_60": 3,
-        "11_60": 3,
-        "11_60": 3,
-        "11_60": 3,
-        "11_60": 3,
-        
-        // Add more entries as needed
-    };
+    const ranges = [
+        { compMin: 11, compMax: 20, heightMin: 10, heightMax: 20 },
+        { compMin: 21, compMax: 30, heightMin: 21, heightMax: 30 },
+        // Add more ranges as needed
+    ];
 
     function calculateMeasurements(height, weight, neck, waist) {
         const comp = waist - neck;
         return { height, weight, neck, waist, comp };
     }
 
+    function isWithinRange(value, min, max) {
+        return value >= min && value <= max;
+    }
+
     function lookupStandards(measurements) {
-        const key = `${measurements.comp}_${measurements.height}`;
-        const lookupResult = resultsLookup[key];  // Get the result directly from the lookup object
-        let resultMessage;
-        if (lookupResult !== undefined) {
-            resultMessage = `<p>Lookup Result: <strong>${lookupResult}</strong></p>`;  // Display the result clearly
-        } else {
-            resultMessage = `<p>No specific result for this combination of Comp and Height.</p>`;
+        const { comp, height } = measurements;
+        let resultMessage = 'No';
+
+        for (const range of ranges) {
+            if (isWithinRange(comp, range.compMin, range.compMax) &&
+                isWithinRange(height, range.heightMin, range.heightMax)) {
+                resultMessage = 'Yes';
+                break;
+            }
         }
         
-        return `<p>Height: ${measurements.height} inches</p>
+        return `<p>Height: ${height} inches</p>
                 <p>Weight: ${measurements.weight} pounds</p>
                 <p>Neck Circumference: ${measurements.neck} cm</p>
                 <p>Waist Circumference: ${measurements.waist} cm</p>
-                <p>Comp (Waist - Neck): ${measurements.comp} cm</p>
-                ${resultMessage}`;  // Include the result message in the final HTML
+                <p>Comp (Waist - Neck): ${comp} cm</p>
+                <p>Result: <strong>${resultMessage}</strong></p>`;
     }
 
     submitButton.addEventListener('click', function(event) {
