@@ -139,8 +139,8 @@ submitButton.addEventListener('click', function(event) {
     const measurements = calculateMeasurements(height, weight, neck, waist);
     const resFemale = lookupStandardsMale(measurements);
     const resMale = lookupStandardsFemale(measurements);
-    document.getElementById("demo").innerHTML = resMale;
-    document.getElementById("demo").innerHTML = resFemale;
+    document.getElementById("male").innerHTML = resMale;
+    document.getElementById("female").innerHTML = resFemale;
 });
 
 });
