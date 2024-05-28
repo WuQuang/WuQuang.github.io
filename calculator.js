@@ -98,43 +98,30 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function lookupStandardsMale(measurements) {
         const { comp, height } = measurements;
-        let resultMessage = 'No';
-        const ranges = maleRanges;
+        const ranges maleRanges;
 
         for (const range of ranges) {
             if (isWithinRange(comp, range.compMin, range.compMax) &&
                 isWithinRange(height, range.heightMin, range.heightMax)) {
-                resultMessage = 'Yes';
+                return "Yes";
                 break;
             }
+        return "No";
         }
     function lookupStandardsFemale(measurements) {
         const { comp, height } = measurements;
-        let resultMessage = 'No';
         const ranges femaleRanges;
 
         for (const range of ranges) {
             if (isWithinRange(comp, range.compMin, range.compMax) &&
                 isWithinRange(height, range.heightMin, range.heightMax)) {
-                resultMessage = 'Yes';
+                return "Yes:;
                 break;
             }
+        return "No";
         }
 
-        return `
-            <p>Height: ${height} inches</p>
-            <p>Weight: ${measurements.weight} pounds</p>
-            <p>Neck Circumference: ${measurements.neck} cm</p>
-            <p>Waist Circumference: ${measurements.waist} cm</p>
-            <p>Comp (Waist - Neck): ${comp} cm</p>
-            <p id="within-standards">Within Standards: <strong>${resultMessage}</strong></p>
-        `;
     }
-
-function displayResults(results, gender) {
-    const resultDiv = document.getElementById(`result${gender.charAt(0).toUpperCase() + gender.slice(1)}`);
-    resultDiv.innerHTML = results;
-}
 
 submitButton.addEventListener('click', function(event) {
     event.preventDefault();
@@ -152,7 +139,8 @@ submitButton.addEventListener('click', function(event) {
     const measurements = calculateMeasurements(height, weight, neck, waist);
     const resFemale = lookupStandardsMale(measurements);
     const resMale = lookupStandardsFemale(measurements);
-    resuleMaleDiv.inn
+    document.getElementById("demo").innerHTML = resMale;
+    document.getElementById("demo").innerHTML = resFemale;
 });
 
 });
