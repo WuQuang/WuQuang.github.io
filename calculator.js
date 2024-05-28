@@ -129,7 +129,6 @@ submitButton.addEventListener('click', function(event) {
     const weight = parseFloat(weightInput.value);
     const neck = parseFloat(neckInput.value);
     const waist = parseFloat(waistInput.value);
-    const gender = genderSelect.value;
 
     if (isNaN(height) || isNaN(weight) || isNaN(neck) || isNaN(waist)) {
         resultDiv.innerHTML = '<p style="color: red;">Please enter valid numbers for all fields.</p>';
