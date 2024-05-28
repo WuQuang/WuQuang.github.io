@@ -84,3 +84,10 @@ footer {
     margin-top: 20px;
     font-size: 18px;
 }
+
+/* Additional CSS for Within Standards result */
+#within-standards {
+    margin-top: 10px;
+    font-size: 18px;
+    color: #333;
+}
